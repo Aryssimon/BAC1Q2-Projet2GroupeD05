@@ -14,10 +14,11 @@ def index():
     """
     retourne le contenu de la page index.html
     """
-    return acceuil.html
+    with open('index.html') as file:
+        return file.read()
 
 @app.route('/graphique')
-def index():
+def graphique():
     """
     retourne le contenu de la page graphique.html
     """
