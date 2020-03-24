@@ -3,7 +3,8 @@
 
 def file_to_graph(filename):
     """
-    Doc de merde
+    @Pre  - filename le nom d'un fichier avec son extension. exemple: 'covid19.csv'
+    @Post - un tuple contenant une liste des dates et une listes des cas correspondants. exemple : (['01/01/2020', '...'], [12345, ...])
     """
     dates = []
     confirmed_cases = []

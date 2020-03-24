@@ -3,7 +3,8 @@
 
 def html_page_creator(dates, cases):
     """
-    Doc de merde
+    @Pre  - <dates> une liste de string, exemple: ['01/01/2020', '...']. <cases> une liste de int, exemple: [12345, 4567, ...].
+    @Post - retourne une page html affichant un graphiques contenant les données entrées en paramètres.
     """
 
 

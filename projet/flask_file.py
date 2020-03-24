@@ -19,7 +19,7 @@ def index():
 @app.route('/graphique')
 def index():
     """
-    retourne le contenu de la page index.html
+    retourne le contenu de la page graphique.html
     """
     dates_and_cases = translate_file.file_to_graph('total_cases.csv')
     dates = dates_and_cases[0]
