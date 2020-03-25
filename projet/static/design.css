@@ -1,6 +1,7 @@
 body
 {
-  background-image: url(background.png);
+  background: url(background.jpg) no-repeat center fixed;
+  background-size: cover;
   color: purple;
 }
 
