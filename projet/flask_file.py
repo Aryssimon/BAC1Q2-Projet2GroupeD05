@@ -16,8 +16,6 @@ def index():
     retourne le contenu de la page index.html
     """
     return render_template('index.html')
-    #with open('index.html') as file:
-        #return file.read()
 
 @app.route('/graphique')
 def graphique():
