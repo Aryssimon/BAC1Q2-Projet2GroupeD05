@@ -1,5 +1,10 @@
 body
 {
-  background-color: white;
-  color: black;
+  background-image: url(background.png);
+  color: purple;
+}
+
+h1 {
+  text-align: center;
+  color: green;
 }
