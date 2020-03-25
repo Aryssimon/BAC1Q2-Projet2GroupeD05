@@ -4,7 +4,8 @@
 import page_creator
 import translate_file
 
-from flask import Flask
+
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
 
@@ -14,8 +15,9 @@ def index():
     """
     retourne le contenu de la page index.html
     """
-    with open('index.html') as file:
-        return file.read()
+    return render_template('index.html')
+    #with open('index.html') as file:
+        #return file.read()
 
 @app.route('/graphique')
 def graphique():
