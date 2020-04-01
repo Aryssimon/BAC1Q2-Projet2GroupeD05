@@ -1,4 +1,4 @@
-<!-- Page html d'acceuil -->
+<!-- Page html d'acceuil du Projet 2-->
 <!-- Authors : Alsteens Louis, Arys Simon et El Ouilinti Aymen. -->
 
 <!DOCTYPE html>
@@ -7,21 +7,18 @@
         <meta charset="utf-8">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design.css') }}">
         <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
-        <meta name="description" content="Page HTML contenant des données liées au Covid-19.">
-        <title>Informations relatives au COVID-19</title>
+        <meta name="description" content="Page HTML d'acceuil du Projet2.">
+        <title>Résultats globaux d'étudiants</title>
     </head>
     <body>
-        <h1>Quelques informations sur le coronavirus</h1>
+        <h1>Projet 2 - Visualisation Inginious</h1>
         <ul style="list-style-type:circle">
-            <li>Le coronavirus est une maladie infectieuse émergente(causée par un agent infecteux), contagieuse avec transmission interhumaine vie des goutelettes respiratoires ou en touchant des surfaces contaminées.<br>
-                Elle est innatendue parce qu'elle est réellement nouvelle. Cette pandémie provoquée par le coronavirus a débuté en novembre/décembre 2019 dans la ville de Wuhann, en chine centrale. <br>
+            <li>Sous-titre à insérer<br>
             </li>
-            <li>Ce lien vous dirigera vers un graphique contenant quelques dates reliées au nombre de cas confirmés: <br>
+            <li>Ce lien vous dirigera vers un graphique contenant quelques données sur des résultats d'étudiants.: <br>
             <!-- Redirection vers la page flask -->
             <a href= "graphique">!!!!!!!LIEN VERS LE GRAPHIQUEEEE!!!!!!!!</a>
             </li>
         </ul>
-        <!-- Une image de virus-->
-        <img src="{{url_for('static', filename='giphy.gif')}}" alt="Un virus" width="500" height="500">
     </body>
 </html>
