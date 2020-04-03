@@ -30,4 +30,19 @@ h1 {
 /* Auteurs */
 #auteurs {
   background-color: #999999;
+  padding: 1%;
+}
+
+li {
+  padding: 2%;
+}
+
+/* Mails */
+.mail {
+  color: #292929;
+  text-decoration: none;
+}
+
+.mail:hover {
+  font-weight: bold;
 }
