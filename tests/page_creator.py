@@ -1,16 +1,14 @@
-#Python file containing the unittests for the <page_creator.py> file.
+#Python file containing the functions designed to create the html pages.
 # Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 
+def html_page_creator(dates, cases):
+    """
+    @Pre  - <dates> une liste de string, exemple: ['01/01/2020', '...']. <cases> une liste de int, exemple: [12345, 4567, ...].
+    @Post - retourne une page html affichant un graphiques contenant les données entrées en paramètres.
+    """
 
-import unittest
-import page_creator as pc
 
-
-class Test_Page_Creator(unittest.TestCase):
-
-    def test0_normal(self):
-        result_created = pc.html_page_creator(["01/01/20", "02/01/20", "03/01/20", "04/01/20"],[10,15,100,50000])
-        right_result ="""<!DOCTYPE html>
+    html_page = """<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -27,18 +25,14 @@ class Test_Page_Creator(unittest.TestCase):
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['01/01/20', '02/01/20', '03/01/20', '04/01/20'] ,
+        labels: """+str(dates)+""" ,
         datasets: [{
           label: 'Confirmed_cases',
-          data: [10, 15, 100, 50000]
+          data: """+str(cases)+"""
         }]
       }
     });
   </script>
 </body>
 </html>"""
-        self.assertEqual(result_created, right_result, "The page created isn't correct.")
-
-
-if __name__ == '__main__':
-    unittest.main()
+    return html_page
