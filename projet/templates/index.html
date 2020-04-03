@@ -5,20 +5,17 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design_index.css') }}">
         <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
         <meta name="description" content="Page HTML d'acceuil du Projet2.">
-        <title>Résultats globaux d'étudiants</title>
+        <title>Projet2 - Acceuil</title>
     </head>
     <body>
         <h1>Projet 2 - Visualisation Inginious</h1>
-        <ul style="list-style-type:circle">
-            <li>Sous-titre à insérer<br>
-            </li>
-            <li>Ce lien vous dirigera vers un graphique contenant quelques données sur des résultats d'étudiants.: <br>
-            <!-- Redirection vers la page flask -->
-            <a href= "graphique">!!!!!!!LIEN VERS LE GRAPHIQUEEEE!!!!!!!!</a>
-            </li>
+        <ul id="menu">
+          <li><a href="graphique">Graphique</a></li>
+          <li><a href="auteurs">Auteurs</a></li>
+          <li><a href="///////">En travaux</a></li>
         </ul>
     </body>
 </html>

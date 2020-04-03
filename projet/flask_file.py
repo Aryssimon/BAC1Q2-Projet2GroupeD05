@@ -23,5 +23,12 @@ def graphique():
     """
     return "en travaux" #page_creator.html_page_creator(dates, cases)
 
+@app.route('/auteurs')
+def auteurs():
+    """
+    retourne le contenu de la page index.html
+    """
+    return render_template('auteurs.html')
+
 if __name__ == '__main__':
     app.run()

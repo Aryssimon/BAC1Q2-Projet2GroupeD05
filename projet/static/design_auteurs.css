@@ -1,0 +1,33 @@
+/*
+CSS stylesheet pour la page "Auteurs".
+Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
+*/
+
+
+/* Page entière */
+html {
+  background-color: #C4C4C4;
+}
+
+/* Titre */
+h1 {
+  text-align: center;
+  margin: 1%;
+  border: 3px solid black;
+  background-color: #6F6F6F;
+}
+
+#title{
+  color: white;
+  text-decoration: none;
+}
+
+#title:hover {
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+/* Auteurs */
+#auteurs {
+  background-color: #999999;
+}
