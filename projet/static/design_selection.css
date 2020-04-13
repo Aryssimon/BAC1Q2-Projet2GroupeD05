@@ -1,0 +1,28 @@
+/*
+CSS stylesheet pour la page "selection".
+Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
+*/
+
+
+/* Page entière */
+html {
+  background-color: white;
+}
+
+/* Titre */
+h1 {
+  text-align: center;
+  margin: 1%;
+  border: 4px double #1E90FF;
+  background-color: white;
+}
+
+#title{
+  color: #1E90FF;
+  text-decoration: none;
+}
+
+#title:hover {
+  font-weight: bold;
+  color: blue;
+}

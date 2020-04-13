@@ -16,11 +16,33 @@ def html_page_creator(label, description, x_axis, y_axis):
 <head>
   <meta charset="utf-8">
   <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
-  <meta name="description" content=" """+description+""" ">
+  <meta name="description" content="""+'"'+description+'"'+""">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
   <title>Projet2, Graphiques Inginious</title>
+
+  <style>
+    h1 {
+      text-align: center;
+      margin: 1%;
+      border: 4px double #1E90FF;
+      background-color: white;
+    }
+
+    #title{
+      color: #1E90FF;
+      text-decoration: none;
+    }
+
+    #title:hover {
+      font-weight: bold;
+      color: blue;
+    }
+  </style>
+
 </head>
+
 <body>
+  <h1 title="Retour à l'acceuil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
   <canvas id="mon_graphique" width="200px" height="200px"></canvas>
   <script>
     var ctx = document.getElementById('mon_graphique').getContext('2d');
@@ -30,7 +52,7 @@ def html_page_creator(label, description, x_axis, y_axis):
       data: {
         labels: """+str(x_axis)+""" ,
         datasets: [{
-          label: '"""+label+"""',
+          label: """+'"'+label+'"'+""",
           data: """+str(y_axis)+"""
         }]
       }

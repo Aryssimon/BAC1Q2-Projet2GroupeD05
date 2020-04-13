@@ -3,9 +3,9 @@
 
 import sqlite3
 
-def get_datas():
+def get_datas(cours):
     """
-    @pre : -
+    @pre : <cours> string contenant: 'lsinf1252', 'lsinf1101-python' ou 'lepl1402'.
     @post: Retourne un dictionnaire contenant les cours et le nombre d'essais.
     """
     # Accès à la base de données
