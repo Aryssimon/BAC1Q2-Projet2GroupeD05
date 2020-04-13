@@ -31,10 +31,10 @@ def graphique_lsinf1252():
     """
     liste_x = []
     liste_y = []
-    for x,y in data_base.get_datas('lsinf1252').items():
+    for x,y in data_base.get_datas('LSINF1252').items():
         liste_x.append(x)
         liste_y.append(y)
-    return page_creator.html_page_creator("Nombre d'essais par cours", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
+    return page_creator.html_page_creator("LSINF1252 : Nombre d'étudiants par nombre d'essais moyens", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
 
 @app.route('/graphique_lsinf1101-python')
 def graphique_lsinf1101_python():
@@ -43,10 +43,10 @@ def graphique_lsinf1101_python():
     """
     liste_x = []
     liste_y = []
-    for x,y in data_base.get_datas('lsinf1101-python').items():
+    for x,y in data_base.get_datas('LSINF1101-PYTHON').items():
         liste_x.append(x)
         liste_y.append(y)
-    return page_creator.html_page_creator("Nombre d'essais par cours", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
+    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'étudiants par nombre d'essais moyens", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
 
 @app.route('/graphique_lepl1402')
 def graphique_lepl1402():
@@ -55,10 +55,10 @@ def graphique_lepl1402():
     """
     liste_x = []
     liste_y = []
-    for x,y in data_base.get_datas('lepl1402').items():
+    for x,y in data_base.get_datas('LEPL1402').items():
         liste_x.append(x)
         liste_y.append(y)
-    return page_creator.html_page_creator("Nombre d'essais par cours", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
+    return page_creator.html_page_creator("LEPL1402 : Nombre d'étudiants par nombre d'essais moyens", 'Page HTML affichant un graphique basé sur les données de la database Inginious', liste_x, liste_y)
 
 
 @app.route('/auteurs')
