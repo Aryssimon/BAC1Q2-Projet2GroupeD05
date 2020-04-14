@@ -43,7 +43,7 @@ def html_page_creator(label, description, x_axis, y_axis):
 
 <body>
   <h1 title="Retour à l'acceuil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
-  <canvas id="mon_graphique" width="200px" height="200px"></canvas>
+  <canvas id="mon_graphique" width="100%" height="45%"></canvas>
   <script>
     var ctx = document.getElementById('mon_graphique').getContext('2d');
     // Creation du graphique
@@ -53,7 +53,33 @@ def html_page_creator(label, description, x_axis, y_axis):
         labels: """+str(x_axis)+""" ,
         datasets: [{
           label: """+'"'+label+'"'+""",
-          data: """+str(y_axis)+"""
+          data: """+str(y_axis)+""",
+          backgroundColor: [
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF",
+            "#1E90FF"
+          ],
+          hoverBackgroundColor: [
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff",
+            "#0000ff"
+          ]
         }]
       }
     });
