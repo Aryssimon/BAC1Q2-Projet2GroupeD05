@@ -18,7 +18,7 @@ def html_page_creator(label, description, x_axis, y_axis):
   <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
   <meta name="description" content="""+'"'+description+'"'+""">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-  <title>Projet2, Graphiques Inginious</title>
+  <title>Projet2 - Graphique Inginious</title>
 
   <style>
     h1 {

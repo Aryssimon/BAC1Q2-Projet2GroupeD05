@@ -26,3 +26,37 @@ h1 {
   font-weight: bold;
   color: blue;
 }
+
+/* Bouttons pour les graphiques */
+
+#cours {
+  list-style: none;
+}
+
+#cours > li {
+  text-align: center;
+  padding: 5%;
+}
+
+
+#cours > li > a{
+  color: blue;
+  border: 7px inset blue;
+  border-radius: 7px;
+  transition: all 0.3s;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-decoration: none;
+  font-family: Verdana;
+  font-size: 140%;
+}
+
+#cours > li > a:hover {
+  color: #1E90FF;
+  border-radius: 50px;
+  border-color: #1E90FF;
+  transition: all 0.5s ;
+}
