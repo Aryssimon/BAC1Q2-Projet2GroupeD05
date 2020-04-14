@@ -1,4 +1,4 @@
-# Main Python file to run our Website with graphics based on Inginious.
+# Main Python file to run our Website with graphics based on Inginious Database.
 # Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 
 import page_creator
