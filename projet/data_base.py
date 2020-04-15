@@ -3,16 +3,22 @@
 
 import sqlite3
 
-def get_datas(cours):
+#Pour pouvoir utiliser la base de données depuis le fichier de unittest.
+import os.path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+database_path = os.path.join(BASE_DIR, "inginious.sqlite")
+
+
+def get_datas_from_database(cours):
     """
     @pre : <cours> string contenant: 'LSINF1252', 'LSINF1101-PYTHON' ou 'LEPL1402'.
-    @post: Retourne un dictionnaire contenant des tranches de nombre d'essais et le nombre d'étudiants associé.
+    @post: Retourne un dictionnaire contenant des tranches de nombre d'essais et le nombre d'étudiants associés.
     """
     nbr_essais_moyen_par_etudiants = {"0" : 0, "1" : 0, "2" : 0, "3->4" : 0, "5->6" : 0, "7->8" : 0, "9->10" : 0, "11->15" : 0, "16->20" : 0, "21->29" : 0, "30+" : 0}
-    essais_par_etudiant = {}     # {'nom' : (essais_totaux, tâches_réalisées) }
+    essais_par_etudiant = {}     # {'nom' : (essais_totaux, tâches_réalisées) }, afin de faire la moyenne par la suite
 
     # Accès à la base de données
-    conn = sqlite3.connect('inginious.sqlite')
+    conn = sqlite3.connect(database_path)
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
 
@@ -27,10 +33,10 @@ def get_datas(cours):
     conn.close()
 
     for essais_et_taches in essais_par_etudiant.values():
-        # faire la moyenne
+        # Faire la moyenne
         result = essais_et_taches[0]/essais_et_taches[1]
 
-        #Ajouter 1 dans la tranche correspondante
+        # Ajouter 1 dans la tranche correspondante
         if result < 0.5:
             nbr_essais_moyen_par_etudiants["0"] = nbr_essais_moyen_par_etudiants.get("0", 0) +1
         elif result <= 1.5:
@@ -56,3 +62,15 @@ def get_datas(cours):
 
 
     return nbr_essais_moyen_par_etudiants
+
+
+def get_datas_from_dict(cours):
+    """
+    @pre:   <cours> nom du cours: LSINF1252, LSINF1101-PYTHON ou LEPL1402.
+    @post:  Retourne un tuple contenant les listes des données des axes x et y du futur graphique.
+    """
+    datas = ([], [])
+    for x,y in get_datas_from_database(cours).items():
+        datas[0].append(x)
+        datas[1].append(y)
+    return datas

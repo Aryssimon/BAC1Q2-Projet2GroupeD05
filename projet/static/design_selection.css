@@ -1,5 +1,5 @@
 /*
-CSS stylesheet pour la page "selection".
+CSS stylesheet pour la page "selection_graphique.html".
 Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 */
 
@@ -14,7 +14,6 @@ h1 {
   text-align: center;
   margin: 1%;
   border: 4px double #1E90FF;
-  background-color: white;
 }
 
 #title{
@@ -25,6 +24,14 @@ h1 {
 #title:hover {
   font-weight: bold;
   color: blue;
+}
+
+/* Sous-titre */
+h2 {
+  text-align: center;
+  font-style: oblique;
+  font-weight: normal;
+  font-family: Verdana;
 }
 
 /* Bouttons pour les graphiques */
@@ -58,5 +65,5 @@ h1 {
   color: #1E90FF;
   border-radius: 50px;
   border-color: #1E90FF;
-  transition: all 0.5s ;
+  background-color: #ebebeb;
 }

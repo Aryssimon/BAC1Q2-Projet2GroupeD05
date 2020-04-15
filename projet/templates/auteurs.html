@@ -5,22 +5,33 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design_auteurs.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design_auteurs.css') }}">    <!-- Lie au fichier design_auteurs.css -->
         <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
         <meta name="description" content="Page HTML des auteurs du Projet2.">
         <title>Projet2 - Auteurs</title>
     </head>
     <body>
-        <h1 title="Retour à l'acceuil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
+        <h1 title="Retour à l'accueil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
         <ul id="auteurs">
-          <li>Alsteens Louis<br><a href="mailto:l.alsteens@student.uclouvain.be" class="mail">email étudiant</a></li>
-          <li>Arys Simon<br><a href="mailto:simon.arys@student.uclouvain.be" class="mail">email étudiant</a></li>
-          <li>El Ouilinti Aymen<br><a href="mailto:aymen.elouilinti@student.uclouvain.be" class="mail">email étudiant</a></li>
+          <li>
+            <ul class="sousliste">
+              <li><p>Alsteens Louis</p></li>
+              <li><a href="mailto:l.alsteens@student.uclouvain.be" class="mail">email étudiant</a></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="sousliste">
+              <li><p>Arys Simon</p></li>
+              <li><a href="mailto:simon.arys@student.uclouvain.be" class="mail">email étudiant</a></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="sousliste">
+              <li><p>El Ouilinti Aymen</p></li>
+              <li><a href="mailto:aymen.elouilinti@student.uclouvain.be" class="mail">email étudiant</a></li>
+            </ul>
+          </li>
         </ul>
-        <div id="logo">
-            <p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Logo_Ecole_Polytechnique_Louvain.jpg" alt="EPL_logo" class="EPL_logo" />
-            </p>
-        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Logo_Ecole_Polytechnique_Louvain.jpg" alt="logo EPL" id="logo"/>
     </body>
 </html>

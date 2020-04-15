@@ -1,5 +1,5 @@
 /*
-CSS stylesheet pour la page "Accueil".
+CSS stylesheet pour la page "index.html".
 Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 */
 
@@ -12,7 +12,7 @@ html {
 /* Titre */
 h1 {
   text-align: center;
-  color: blue;
+  color: #1E90FF;
   margin: 1%;
   border: 7px double #1E90FF;
 }
@@ -43,7 +43,7 @@ h1 {
   background-color: #000080;
   margin-left: 10%;
   margin-right: 10%;
-  padding: 8%;
+  padding: 4%;
 
 }
 #menu > li{
@@ -64,8 +64,8 @@ h1 {
   text-align: center;
   background-color: white;
   font-family: Arial;
+  transition: all 0.2s;
 }
 #menu > li > a:hover{
-  background-color: white;
   font-weight: bold;
 }
