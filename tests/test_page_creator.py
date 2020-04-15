@@ -3,13 +3,15 @@
 
 
 import unittest
-import page_creator as pc
+import sys
+sys.path.append('../projet')
+import page_creator
 
 
 class Test_Page_Creator(unittest.TestCase):
 
     def test0_normal(self):
-        result_created = pc.html_page_creator('test_label', "Exemple de page HTML.", ["01/01/20", "02/01/20", "03/01/20", "04/01/20"], [10,15,100,50000])
+        result_created = page_creator.html_page_creator('test_label', "Exemple de page HTML.", ["01/01/20", "02/01/20", "03/01/20", "04/01/20"], [10,15,100,50000])
         right_result ="""<!DOCTYPE html>
 <html lang="fr">
 <head>
