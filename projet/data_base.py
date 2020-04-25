@@ -9,10 +9,53 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 database_path = os.path.join(BASE_DIR, "inginious.sqlite")
 
 
-def get_datas_from_database(cours):
+#-------------------------
+#Graphique cours LSINF1252
+def nbr_de_chaque_result():
     """
-    @pre : <cours> string contenant: 'LSINF1252', 'LSINF1101-PYTHON' ou 'LEPL1402'.
-    @post: Retourne un dictionnaire contenant des tranches de nombre d'essais et le nombre d'étudiants associés.
+    @pre: /
+    @post: Retourne une liste contenant le nombre de timeout, success, overflow, killed, failed, crash
+    """
+
+    conn = sqlite3.connect(database_path)
+    # Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+    timeout = 0
+    success = 0
+    overflow = 0
+    killed = 0
+    failed = 0
+    crash = 0
+    # Augmenter les variables correspondantes
+    for row in cursor.execute("SELECT course, result from submissions"):
+        # Sélectionner seulement le cours LSINF1252
+        if row[0] == 'LSINF1101-PYTHON':
+            if row[1] == 'timeout':
+                timeout += 1
+            elif row[1] == 'success':
+                success += 1
+            elif row[1] == 'overflow':
+                overflow += 1
+            elif row[1] == 'killed':
+                killed += 1
+            elif row[1] == 'failed':
+                failed += 1
+            elif row[1] == 'crash':
+                crash += 1
+
+    conn.close()
+
+    return [timeout, success//25, overflow, killed, failed//50, crash]
+
+
+
+
+#---------------------------------
+#Graphique cours LSINF1101-PYTHON
+def nbr_etudiants_nbr_essais_moyens():
+    """
+    @pre : /
+    @post: Retourne un tuple contenant les listes des données des axes x et y du futur graphique.
     """
     nbr_essais_moyen_par_etudiants = {"0" : 0, "1" : 0, "2" : 0, "3->4" : 0, "5->6" : 0, "7->8" : 0, "9->10" : 0, "11->15" : 0, "16->20" : 0, "21->29" : 0, "30+" : 0}
     essais_par_etudiant = {}     # {'nom' : (essais_totaux, tâches_réalisées) }, afin de faire la moyenne par la suite
@@ -22,10 +65,10 @@ def get_datas_from_database(cours):
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
 
-    # Remplir le dictionnaire avec le noombre d'essais totaux et le nombres de tâches réalisées.
+    # Remplir le dictionnaire avec le nombre d'essais totaux et le nombres de tâches réalisées.
     for row in cursor.execute("SELECT course, username, tried from user_tasks"):
-        # Sélectionner seulement le cours passé en argument
-        if row[0] == cours:
+        # Sélectionner seulement le cours LSINF1101-PYTHON
+        if row[0] == 'LSINF1101-PYTHON':
             current = essais_par_etudiant.get(row[1], (0, 0))
             current = (current[0]+row[2], current[1]+1)
             essais_par_etudiant[row[1]] = current
@@ -60,17 +103,38 @@ def get_datas_from_database(cours):
         else:
             nbr_essais_moyen_par_etudiants["30+"] = nbr_essais_moyen_par_etudiants.get("30+", 0) +1
 
-
-    return nbr_essais_moyen_par_etudiants
-
-
-def get_datas_from_dict(cours):
-    """
-    @pre:   <cours> nom du cours: LSINF1252, LSINF1101-PYTHON ou LEPL1402.
-    @post:  Retourne un tuple contenant les listes des données des axes x et y du futur graphique.
-    """
-    datas = ([], [])
-    for x,y in get_datas_from_database(cours).items():
+    datas = [[], []]
+    for x,y in nbr_essais_moyen_par_etudiants.items():
         datas[0].append(x)
         datas[1].append(y)
     return datas
+
+
+
+
+
+#-------------------------
+#Graphique cours LELP1402
+def nbr_reussis_nbr_rates():
+    """
+    @pre : /
+    @post: Retourne une liste contenant les données de l'axe y du futur graphique.
+    """
+    # Accès à la base de données
+    conn = sqlite3.connect('inginious.sqlite')
+    # Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+    reussis = 0
+    rates = 0
+    # Augmenter les deux variables avec le nombre de réussis et de ratés
+    for row in cursor.execute("SELECT course, succeeded from user_tasks"):
+        # Sélectionner seulement le cours LEPL1402
+        if row[0] == 'LEPL1402':
+            if row[1] == 'true':
+                reussis += 1
+            else:
+                rates += 1
+
+    conn.close()
+
+    return [reussis, rates]

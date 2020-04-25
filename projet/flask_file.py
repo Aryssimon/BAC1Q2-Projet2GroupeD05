@@ -30,20 +30,69 @@ def auteurs():
 @app.route('/graphique_lsinf1252')
 def graphique_lsinf1252():
     """Retourne une page affichant un graphique Chartjs du cours LSINF1252."""
-    x_et_y = data_base.get_datas_from_dict('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252 : Nombre d'étudiants par nombre d'essais moyens", x_et_y[0], x_et_y[1])
+    x = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
+    y = data_base.nbr_de_chaque_result()
+    colors = """backgroundColor: [
+      "#ff0000",
+      "#fff200",
+      "#09ff00",
+      "#00ffff",
+      "#1500ff",
+      "#f700ff"
+    ],
+    hoverBackgroundColor: [
+      "#c20000",
+      "#ebdf00",
+      "#07cc00",
+      "#00e3e3",
+      "#1100cc",
+      "#c800cf" """
+    return page_creator.html_page_creator("LSINF1252 : Nombre d'étudiants par nombre d'essais moyens", x, y, 'polarArea', colors)
 
 @app.route('/graphique_lsinf1101-python')
 def graphique_lsinf1101_python():
     """Retourne une page affichant un graphique Chartjs du cours LSINF1101-PYTHON."""
-    x_et_y = data_base.get_datas_from_dict('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'étudiants par nombre d'essais moyens", x_et_y[0], x_et_y[1])
+    x_et_y = data_base.nbr_etudiants_nbr_essais_moyens()
+    colors = """backgroundColor: [
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF"
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF"
+    ],
+    hoverBackgroundColor: [
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff" """
+    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'étudiants par nombre d'essais moyens", x_et_y[0], x_et_y[1], 'bar', colors)
 
 @app.route('/graphique_lepl1402')
 def graphique_lepl1402():
     """Retourne une page affichant un graphique Chartjs du cours LEPL1402."""
-    x_et_y = data_base.get_datas_from_dict('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402 : Nombre d'étudiants par nombre d'essais moyens", x_et_y[0], x_et_y[1])
+    x = ["Réussis", "Ratés"]
+    y = data_base.nbr_reussis_nbr_rates()
+    colors = """backgroundColor: [
+      "#09ff00",
+      "#ff0000"
+    ],
+    hoverBackgroundColor: [
+      "#07cc00",
+      "#c20000" """
+    return page_creator.html_page_creator("LEPL1402 : Nombre d'étudiants ayant réussis et ratés", x, y, 'pie', colors)
 
 
 

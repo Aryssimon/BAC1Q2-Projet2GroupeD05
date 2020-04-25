@@ -1,10 +1,12 @@
 # Python file containing the function designed to create the html pages with chartjs graphs.
 # Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 
-def html_page_creator(label, x_axis, y_axis):
+def html_page_creator(label, x_axis, y_axis, type, colors):
     """
     @Pre:   <label> Le titre du graphique (str).
             <x_axis> et <y_axis> deux listes représentants les données des axes x et y.
+            <type> string représentant le type de graphique (bar, pie, radar, polarArea, scatter, bubble, line).
+            <colors> string représentant le backgroundColor et le hoverBackgroundColor.
 
     @Post:  Retourne une page html affichant un graphique contenant les données entrées en paramètres.
     """
@@ -46,37 +48,13 @@ def html_page_creator(label, x_axis, y_axis):
     var ctx = document.getElementById('mon_graphique').getContext('2d');
     // Creation du graphique
     var myChart = new Chart(ctx, {
-      type: 'bar',
+      type: """+'"'+type+'"'+""",
       data: {
         labels: """+str(x_axis)+""" ,
         datasets: [{
           label: """+'"'+label+'"'+""",
           data: """+str(y_axis)+""",
-          backgroundColor: [
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF",
-            "#1E90FF"
-          ],
-          hoverBackgroundColor: [
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff",
-            "#0000ff"
+          """+colors+"""
           ]
         }]
       }
