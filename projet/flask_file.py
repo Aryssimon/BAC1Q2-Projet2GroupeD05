@@ -59,7 +59,7 @@ def graphique_lsinf1101_python():
       "#1E90FF",
       "#1E90FF",
       "#1E90FF",
-      "#1E90FF"
+      "#1E90FF",
       "#1E90FF",
       "#1E90FF",
       "#1E90FF",
