@@ -10,7 +10,7 @@ database_path = os.path.join(BASE_DIR, "inginious.sqlite")
 
 
 #-------------------------
-#Graphique cours LSINF1252
+#Graphique résultats
 def nbr_de_chaque_result(cours):
     """
     @pre: <cours> string du nom du cours.
@@ -50,7 +50,7 @@ def nbr_de_chaque_result(cours):
 
 
 #---------------------------------
-#Graphique cours LSINF1101-PYTHON
+#Graphique nombre d'étudiants par nombre d'essais moyens
 def nbr_etudiants_nbr_essais_moyens(cours):
     """
     @pre : <cours> string du nom du cours.
@@ -113,7 +113,7 @@ def nbr_etudiants_nbr_essais_moyens(cours):
 
 
 #-------------------------
-#Graphique cours LELP1402
+#Graphique Réussis/Ratés
 def nbr_reussis_nbr_rates(cours):
     """
     @pre : <cours> string du nom du cours.

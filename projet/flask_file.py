@@ -30,24 +30,22 @@ def auteurs():
 @app.route('/graphique_resultats_lepl1402')
 def graphique_resultats_lepl1402():
     """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    x = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
     y = data_base.nbr_de_chaque_result('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402 : Résultats des soumissions", x, y, 'polarArea', colors_resultats)
+    return page_creator.html_page_creator("LEPL1402 : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
 
 @app.route('/graphique_resultats_lsinf1101_python')
 def graphique_resultats_lsinf1101_python():
     """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    x = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
     y = data_base.nbr_de_chaque_result('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON : Résultats des soumissions", x, y, 'polarArea', colors_resultats)
+    return page_creator.html_page_creator("LSINF1101-PYTHON : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
 
 @app.route('/graphique_resultats_lsinf1252')
 def graphique_resultats_lsinf1252():
     """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    x = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
     y = data_base.nbr_de_chaque_result('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252 : Résultats des soumissions", x, y, 'polarArea', colors_resultats)
+    return page_creator.html_page_creator("LSINF1252 : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
 
+x_resultats = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
 colors_resultats = """backgroundColor: [
   "#ff0000",
   "#fff200",
