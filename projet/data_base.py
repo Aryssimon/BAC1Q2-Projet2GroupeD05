@@ -11,9 +11,9 @@ database_path = os.path.join(BASE_DIR, "inginious.sqlite")
 
 #-------------------------
 #Graphique cours LSINF1252
-def nbr_de_chaque_result():
+def nbr_de_chaque_result(cours):
     """
-    @pre: /
+    @pre: <cours> string du nom du cours.
     @post: Retourne une liste contenant le nombre de timeout, success, overflow, killed, failed, crash
     """
 
@@ -28,8 +28,7 @@ def nbr_de_chaque_result():
     crash = 0
     # Augmenter les variables correspondantes
     for row in cursor.execute("SELECT course, result from submissions"):
-        # Sélectionner seulement le cours LSINF1252
-        if row[0] == 'LSINF1101-PYTHON':
+        if row[0] == cours:
             if row[1] == 'timeout':
                 timeout += 1
             elif row[1] == 'success':
@@ -52,9 +51,9 @@ def nbr_de_chaque_result():
 
 #---------------------------------
 #Graphique cours LSINF1101-PYTHON
-def nbr_etudiants_nbr_essais_moyens():
+def nbr_etudiants_nbr_essais_moyens(cours):
     """
-    @pre : /
+    @pre : <cours> string du nom du cours.
     @post: Retourne un tuple contenant les listes des données des axes x et y du futur graphique.
     """
     nbr_essais_moyen_par_etudiants = {"0" : 0, "1" : 0, "2" : 0, "3->4" : 0, "5->6" : 0, "7->8" : 0, "9->10" : 0, "11->15" : 0, "16->20" : 0, "21->29" : 0, "30+" : 0}
@@ -68,7 +67,7 @@ def nbr_etudiants_nbr_essais_moyens():
     # Remplir le dictionnaire avec le nombre d'essais totaux et le nombres de tâches réalisées.
     for row in cursor.execute("SELECT course, username, tried from user_tasks"):
         # Sélectionner seulement le cours LSINF1101-PYTHON
-        if row[0] == 'LSINF1101-PYTHON':
+        if row[0] == cours:
             current = essais_par_etudiant.get(row[1], (0, 0))
             current = (current[0]+row[2], current[1]+1)
             essais_par_etudiant[row[1]] = current
@@ -115,9 +114,9 @@ def nbr_etudiants_nbr_essais_moyens():
 
 #-------------------------
 #Graphique cours LELP1402
-def nbr_reussis_nbr_rates():
+def nbr_reussis_nbr_rates(cours):
     """
-    @pre : /
+    @pre : <cours> string du nom du cours.
     @post: Retourne une liste contenant les données de l'axe y du futur graphique.
     """
     # Accès à la base de données
@@ -129,7 +128,7 @@ def nbr_reussis_nbr_rates():
     # Augmenter les deux variables avec le nombre de réussis et de ratés
     for row in cursor.execute("SELECT course, succeeded from user_tasks"):
         # Sélectionner seulement le cours LEPL1402
-        if row[0] == 'LEPL1402':
+        if row[0] == cours:
             if row[1] == 'true':
                 reussis += 1
             else:
