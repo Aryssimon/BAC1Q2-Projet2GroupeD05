@@ -38,15 +38,45 @@ h2 {
 
 #cours {
   list-style: none;
+  padding: 0.1%;
+  text-align: center;
+  font-size: 150%;
+  font-family: Verdana;
 }
 
 #cours > li {
-  text-align: center;
-  padding: 5%;
+  display: inline;
+  padding: 8%
 }
 
+.column {
+  float: left;
+  width: 33.33%;
+}
 
-#cours > li > a{
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#colonne {
+  display: table;
+}
+
+.graphs {
+  list-style: none;
+  text-align: center;
+  font-size: 150%;
+}
+
+.graphs > li {
+  list-style: none;
+  padding-top: 20%;
+  text-align: center;
+}
+
+.graphs > li > a {
   color: blue;
   border: 7px inset blue;
   border-radius: 7px;
@@ -58,12 +88,53 @@ h2 {
   padding-bottom: 3%;
   text-decoration: none;
   font-family: Verdana;
-  font-size: 140%;
+  font-size: 100%;
 }
 
-#cours > li > a:hover {
+.graphs > li > a:hover {
   color: #1E90FF;
   border-radius: 50px;
   border-color: #1E90FF;
-  background-color: #ebebeb;
+}
+
+h3 {
+  padding-top: 5%;
+  text-decoration: none;
+  font-family: Verdana;
+  text-align: center;
+}
+
+
+
+.graphs_comparaison {
+  list-style: none;
+  text-align: center;
+  font-size: 150%;
+}
+
+.graphs_comparaison > li {
+  list-style: none;
+  padding-top: 5%;
+  text-align: center;
+}
+
+.graphs_comparaison > li > a {
+  color: blue;
+  border: 7px inset blue;
+  border-radius: 7px;
+  transition: all 0.3s;
+  text-align: center;
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-top: 1.5%;
+  padding-bottom: 1.5%;
+  text-decoration: none;
+  font-family: Verdana;
+  font-size: 100%;
+}
+
+.graphs_comparaison > li > a:hover {
+  color: #1E90FF;
+  border-radius: 50px;
+  border-color: #1E90FF;
 }

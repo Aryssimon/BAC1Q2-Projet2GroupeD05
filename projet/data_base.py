@@ -137,3 +137,20 @@ def nbr_reussis_nbr_rates(cours):
     conn.close()
 
     return [reussis, rates]
+
+
+#-------------------------
+#Graphiques comparatifs
+#def graph_comparatifs(cours):
+    #"""
+    #@pre: <cours> string du nom du cours.
+    #@post: Retourne ...
+    #"""
+    # Accès à la base de données
+    #conn = sqlite3.connect(database_path)
+    # Le curseur permettra l'envoi des commandes SQL
+    #cursor = conn.cursor()
+
+
+
+    #conn.close()
