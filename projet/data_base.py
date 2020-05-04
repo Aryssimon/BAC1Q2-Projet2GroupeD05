@@ -141,16 +141,37 @@ def nbr_reussis_nbr_rates(cours):
 
 #-------------------------
 #Graphiques comparatifs
-#def graph_comparatifs(cours):
-    #"""
-    #@pre: <cours> string du nom du cours.
-    #@post: Retourne ...
-    #"""
-    # Accès à la base de données
-    #conn = sqlite3.connect(database_path)
-    # Le curseur permettra l'envoi des commandes SQL
-    #cursor = conn.cursor()
+def taux_de_reussite():
+    """
+    @pre: /
+    @post: Retourne une liste contenant les données du taux de réussite pour les sinfs et les ingis.
+    """
+    #Accès à la base de données
+    conn = sqlite3.connect(database_path)
+    #Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+    reussis_sinf = 0
+    rates_sinf = 0
+
+    reussis_ingi = 0
+    rates_ingi = 0
+    for row in cursor.execute("SELECT course, succeeded from user_tasks"):
+        # Sélectionner seulement le cours LEPL1402
+        if row[0] == 'LEPL1402':
+            if row[1] == 'true':
+                reussis_ingi += 1
+            else:
+                rates_ingi += 1
+        else:
+            if row[1] == 'true':
+                reussis_sinf += 1
+            else:
+                rates_sinf += 1
+    taux_sinf = round((reussis_sinf/(reussis_sinf+rates_sinf))*100)
+    taux_ingi = round((reussis_ingi/(reussis_ingi+rates_ingi))*100)
+
+    return [taux_sinf, taux_ingi]
 
 
 
-    #conn.close()
+    conn.close()

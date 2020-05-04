@@ -1,7 +1,7 @@
 # Python file containing the function designed to create the html pages with chartjs graphs.
 # Authors : Arys Simon, Alsteens Louis, El Ouilinti Aymen.
 
-def html_page_creator(label, x_axis, y_axis, type, colors):
+def html_page_creator(label, x_axis, y_axis, type, colors, options=""):
     """
     @Pre:   <label> Le titre du graphique (str).
             <x_axis> et <y_axis> deux listes représentants les données des axes x et y.
@@ -57,7 +57,7 @@ def html_page_creator(label, x_axis, y_axis, type, colors):
           """+colors+"""
           ]
         }]
-      }
+      }"""+options+"""
     });
   </script>
 </body>

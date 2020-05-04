@@ -34,21 +34,24 @@ h2 {
   font-family: Verdana;
 }
 
-/* Bouttons pour les graphiques */
-
-#cours {
-  list-style: none;
-  padding: 0.1%;
+/* Noms des cours */
+.cours {
   text-align: center;
-  font-size: 150%;
+  font-size: 180%;
   font-family: Verdana;
+  font-weight: bold;
+  font-style: normal;
+  border: 4px solid;
+  border-radius: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
 }
 
-#cours > li {
-  display: inline;
-  padding: 8%
-}
-
+/* Arrangement sous forme de 3 colonnes */
 .column {
   float: left;
   width: 33.33%;
@@ -60,10 +63,7 @@ h2 {
   clear: both;
 }
 
-#colonne {
-  display: table;
-}
-
+/* Graphs par cours */
 .graphs {
   list-style: none;
   text-align: center;
@@ -72,8 +72,9 @@ h2 {
 
 .graphs > li {
   list-style: none;
-  padding-top: 20%;
+  padding-top: 5%;
   text-align: center;
+  margin-top: 10%;
 }
 
 .graphs > li > a {
@@ -97,14 +98,11 @@ h2 {
   border-color: #1E90FF;
 }
 
+/* Graphs de comparaison entre cours */
 h3 {
-  padding-top: 5%;
   text-decoration: none;
-  font-family: Verdana;
   text-align: center;
 }
-
-
 
 .graphs_comparaison {
   list-style: none;

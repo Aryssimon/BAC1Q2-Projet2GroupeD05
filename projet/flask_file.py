@@ -71,19 +71,19 @@ hoverBackgroundColor: [
 def graphique_essais_lepl1402():
     """Retourne une page affichant un graphique Chartjs du cours LEPL1402."""
     x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402 : Nombre d'essais moyens par nombre d'étudiants", x_et_y[0], x_et_y[1], 'bar', colors_essais)
+    return page_creator.html_page_creator("LEPL1402 : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
 
 @app.route('/graphique_essais_lsinf1101_python')
 def graphique_essais_lsinf1101_python():
     """Retourne une page affichant un graphique Chartjs du cours LSINF1101-PYTHON."""
     x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'essais moyens par nombre d'étudiants", x_et_y[0], x_et_y[1], 'bar', colors_essais)
+    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
 
 @app.route('/graphique_essais_lsinf1252')
 def graphique_essais_lsinf1252():
     """Retourne une page affichant un graphique Chartjs du cours LEPL1402."""
     x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252 : Nombre d'essais moyens par nombre d'étudiants", x_et_y[0], x_et_y[1], 'bar', colors_essais)
+    return page_creator.html_page_creator("LSINF1252 : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
 
 colors_essais = """backgroundColor: [
   "#1E90FF",
@@ -145,6 +145,38 @@ colors_reussis_rates = """backgroundColor: [
 hoverBackgroundColor: [
   "#07cc00",
   "#c20000" """
+
+
+#---------------------------------------------
+#------------Taux de réussite-----------------
+#---------------------------------------------
+@app.route('/graphique_taux_de_reussite')
+def graphique_taux_de_reussite():
+    """Retourne une page affichant un graphique Chartjs de comparaison du taux de réussite entre les sinfs et les ingis."""
+    x = ["Sinf", "Ingi"]
+    y = data_base.taux_de_reussite()
+    return page_creator.html_page_creator("Comparaison Sinf/Ingi: Taux de réussite", x, y, 'bar', colors_taux_de_reussite, options_taux)
+
+colors_taux_de_reussite = """backgroundColor: [
+  "#45f542",
+  "#42baff"
+],
+hoverBackgroundColor: [
+  "#3dc938",
+  "#39a0db" """
+
+options_taux=""",
+options: {
+  scales: {
+      yAxes: [{
+      ticks: {
+             min: 0,
+             max: 100
+          }
+      }]
+  }
+}
+"""
 
 
 if __name__ == '__main__':
