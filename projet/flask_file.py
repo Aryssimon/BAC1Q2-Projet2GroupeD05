@@ -8,7 +8,7 @@ from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
-
+#---------Les pages principales---------
 @app.route('/')
 def accueil():
     """Retourne le contenu de la page index.html."""
@@ -27,135 +27,97 @@ def auteurs():
 
 #-----Les pages de graphiques Chartjs------
 
-@app.route('/graphique_resultats_lepl1402')
-def graphique_resultats_lepl1402():
-    """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    y = data_base.nbr_de_chaque_result('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402 : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
-
-@app.route('/graphique_resultats_lsinf1101_python')
-def graphique_resultats_lsinf1101_python():
-    """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    y = data_base.nbr_de_chaque_result('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
-
-@app.route('/graphique_resultats_lsinf1252')
-def graphique_resultats_lsinf1252():
-    """Retourne une page affichant un graphique Chartjs des résultats des soumissions."""
-    y = data_base.nbr_de_chaque_result('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252 : Résultats des soumissions", x_resultats, y, 'polarArea', colors_resultats)
-
-x_resultats = ["Timeout", "Success/25", "Overflow", "Killed", "Failed/50", "Crash"]
-colors_resultats = """backgroundColor: [
-  "#ff0000",
-  "#fff200",
-  "#09ff00",
-  "#00ffff",
-  "#1500ff",
-  "#f700ff"
-],
-hoverBackgroundColor: [
-  "#c20000",
-  "#ebdf00",
-  "#07cc00",
-  "#00e3e3",
-  "#1100cc",
-  "#c800cf" """
+#--------------------------------------------------------------------------
+#-------------------------Resultats des soumissions------------------------
+#--------------------------------------------------------------------------
+@app.route('/graphiques_resultats/<cours>')
+def graphique_resultats(cours):
+    """Retourne une page affichant un graphique Chartjs des resultats des soumissions."""
+    y = data_base.nbr_de_chaque_result(cours)
+    x = ["%Timeout", "%Crash", "%Overflow", "%Killed", "%Success", "%Failed"]
+    colors_resultats = """backgroundColor: [
+      "#ff0000",
+      "#fff200",
+      "#09ff00",
+      "#00ffff",
+      "#1500ff",
+      "#f700ff"
+    ],
+    hoverBackgroundColor: [
+      "#c20000",
+      "#ebdf00",
+      "#07cc00",
+      "#00e3e3",
+      "#1100cc",
+      "#c800cf" """
+    return page_creator.html_page_creator(cours+" : Resultats des soumissions", x, y, 'pie', colors_resultats)
 
 
 
 #--------------------------------------------------------------------------
-#----------------Nombre d'étudiants par essais moyens----------------------
+#----------------Nombre d'etudiants par essais moyens----------------------
 #--------------------------------------------------------------------------
-@app.route('/graphique_essais_lepl1402')
-def graphique_essais_lepl1402():
-    """Retourne une page affichant un graphique Chartjs du cours LEPL1402."""
-    x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402 : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
-
-@app.route('/graphique_essais_lsinf1101_python')
-def graphique_essais_lsinf1101_python():
-    """Retourne une page affichant un graphique Chartjs du cours LSINF1101-PYTHON."""
-    x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
-
-@app.route('/graphique_essais_lsinf1252')
-def graphique_essais_lsinf1252():
-    """Retourne une page affichant un graphique Chartjs du cours LEPL1402."""
-    x_et_y = data_base.nbr_etudiants_nbr_essais_moyens('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252 : Nombre d'étudiants(y) par nombre d'essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
-
-colors_essais = """backgroundColor: [
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF",
-  "#1E90FF"
-],
-hoverBackgroundColor: [
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff",
-  "#0000ff" """
+@app.route('/graphiques_essais/<cours>')
+def graphique_essais(cours):
+    """Retourne une page affichant un graphique Chartjs du nombre d'etudiants par nombre d essais moyens"""
+    x_et_y = data_base.nbr_etudiants_nbr_essais_moyens(cours)
+    colors_essais = """backgroundColor: [
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF",
+      "#1E90FF"
+    ],
+    hoverBackgroundColor: [
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff",
+      "#0000ff" """
+    return page_creator.html_page_creator(cours+" : Nombre d etudiants(y) par nombre d essais moyens(x)", x_et_y[0], x_et_y[1], 'bar', colors_essais)
 
 
 
 #----------------------------------------------------
-#-------------- Réussis / Ratés----------------------
+#-------------- Reussis / Rates----------------------
 #----------------------------------------------------
+@app.route('/graphiques_reussis_rates/<cours>')
+def graphique_reussis_rates(cours):
+    """Retourne une page affichant un graphique Chartjs le pourcentage de reussites et d echecs"""
+    x = ["%Soumissions reussies", "%Soumissions rates"]
+    y = data_base.nbr_reussis_nbr_rates(cours)
+    colors_reussis_rates = """backgroundColor: [
+      "#09ff00",
+      "#ff0000"
+    ],
+    hoverBackgroundColor: [
+      "#07cc00",
+      "#c20000" """
+    return page_creator.html_page_creator(cours+" : Pourcentage de soumissions reussies ou rates", x, y, 'pie', colors_reussis_rates)
 
-@app.route('/graphique_reussis_rates_lepl1402')
-def graphique_reussis_rates_lepl1402():
-    """Retourne une page affichant un graphique Chartjs du nombre de réussites et d'échecs pour le cours LEPL1402."""
-    x = ["Réussis", "Ratés"]
-    y = data_base.nbr_reussis_nbr_rates('LEPL1402')
-    return page_creator.html_page_creator("LEPL1402: Nombre d'étudiants ayant réussis et ratés", x, y, 'pie', colors_reussis_rates)
-
-@app.route('/graphique_reussis_rates_lsinf1101_python')
-def graphique_reussis_rates_lsinf1101_python():
-    """Retourne une page affichant un graphique Chartjs du nombre de réussites et d'échecs pour le cours LSINF1101-PYTHON."""
-    x = ["Réussis", "Ratés"]
-    y = data_base.nbr_reussis_nbr_rates('LSINF1101-PYTHON')
-    return page_creator.html_page_creator("LSINF1101-PYTHON: Nombre d'étudiants ayant réussis et ratés", x, y, 'pie', colors_reussis_rates)
-
-@app.route('/graphique_reussis_rates_lsinf1252')
-def graphique_reussis_rates_lsinf1252():
-    """Retourne une page affichant un graphique Chartjs du nombre de réussites et d'échecs pour le cours LSINF1252."""
-    x = ["Réussis", "Ratés"]
-    y = data_base.nbr_reussis_nbr_rates('LSINF1252')
-    return page_creator.html_page_creator("LSINF1252: Nombre d'étudiants ayant réussis et ratés", x, y, 'pie', colors_reussis_rates)
-
-colors_reussis_rates = """backgroundColor: [
-  "#09ff00",
-  "#ff0000"
-],
-hoverBackgroundColor: [
-  "#07cc00",
-  "#c20000" """
 
 
 #---------------------------------------------
-#------------Taux de réussite-----------------
+#------------Taux de reussite-----------------
 #---------------------------------------------
 @app.route('/graphique_taux_de_reussite')
 def graphique_taux_de_reussite():
-    """Retourne une page affichant un graphique Chartjs de comparaison du taux de réussite entre les sinfs et les ingis."""
+    """Retourne une page affichant un graphique Chartjs de comparaison du taux de reussite entre les sinfs et les ingis."""
     x = ["Sinf", "Ingi"]
     y = data_base.taux_de_reussite()
-    return page_creator.html_page_creator("Comparaison Sinf/Ingi: Taux de réussite", x, y, 'bar', colors_taux_de_reussite, options_taux)
+    return page_creator.html_page_creator("Comparaison Sinf/Ingi: Taux de reussite", x, y, 'bar', colors_taux_de_reussite, options_taux)
 
 colors_taux_de_reussite = """backgroundColor: [
   "#45f542",
@@ -165,7 +127,7 @@ hoverBackgroundColor: [
   "#3dc938",
   "#39a0db" """
 
-options_taux=""",
+options_taux = """,
 options: {
   scales: {
       yAxes: [{
@@ -177,6 +139,7 @@ options: {
   }
 }
 """
+
 
 
 if __name__ == '__main__':

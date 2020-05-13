@@ -3,22 +3,16 @@
 
 import sqlite3
 
-#Pour pouvoir utiliser la base de données depuis le fichier de unittest.
-import os.path
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-database_path = os.path.join(BASE_DIR, "inginious.sqlite")
-
-
 #-------------------------
-#Graphique résultats
+#Graphique resultats
 def nbr_de_chaque_result(cours):
     """
     @pre: <cours> string du nom du cours.
     @post: Retourne une liste contenant le nombre de timeout, success, overflow, killed, failed, crash
     """
 
-    conn = sqlite3.connect(database_path)
-    # Le curseur permettra l'envoi des commandes SQL
+    conn = sqlite3.connect('inginious.sqlite')
+    # Le curseur permettra l envoi des commandes SQL
     cursor = conn.cursor()
     timeout = 0
     success = 0
@@ -26,51 +20,51 @@ def nbr_de_chaque_result(cours):
     killed = 0
     failed = 0
     crash = 0
+    total = 0
     # Augmenter les variables correspondantes
-    for row in cursor.execute("SELECT course, result from submissions"):
-        if row[0] == cours:
-            if row[1] == 'timeout':
-                timeout += 1
-            elif row[1] == 'success':
-                success += 1
-            elif row[1] == 'overflow':
-                overflow += 1
-            elif row[1] == 'killed':
-                killed += 1
-            elif row[1] == 'failed':
-                failed += 1
-            elif row[1] == 'crash':
-                crash += 1
+    for row in cursor.execute("SELECT result from submissions WHERE course='{}'".format(cours)):
+        if row[0] == 'timeout':
+            timeout += 1
+        elif row[0] == 'success':
+            success += 1
+        elif row[0] == 'overflow':
+            overflow += 1
+        elif row[0] == 'killed':
+            killed += 1
+        elif row[0] == 'failed':
+            failed += 1
+        elif row[0] == 'crash':
+            crash += 1
+        total += 1
 
     conn.close()
 
-    return [timeout, success//25, overflow, killed, failed//50, crash]
+
+    return [round((timeout/total)*100, 2), round((crash/total)*100, 2), round((overflow/total)*100, 2), round((killed/total)*100, 2), round((success/total)*100, 2), round((failed/total)*100, 2)]
 
 
 
 
 #---------------------------------
-#Graphique nombre d'étudiants par nombre d'essais moyens
+#Graphique nombre d etudiants par nombre d essais moyens
 def nbr_etudiants_nbr_essais_moyens(cours):
     """
     @pre : <cours> string du nom du cours.
-    @post: Retourne un tuple contenant les listes des données des axes x et y du futur graphique.
+    @post: Retourne un tuple contenant les listes des donnees des axes x et y du futur graphique.
     """
     nbr_essais_moyen_par_etudiants = {"0" : 0, "1" : 0, "2" : 0, "3->4" : 0, "5->6" : 0, "7->8" : 0, "9->10" : 0, "11->15" : 0, "16->20" : 0, "21->29" : 0, "30+" : 0}
-    essais_par_etudiant = {}     # {'nom' : (essais_totaux, tâches_réalisées) }, afin de faire la moyenne par la suite
+    essais_par_etudiant = {}     # {'nom' : (essais_totaux, taches_realisees) }, afin de faire la moyenne par la suite
 
-    # Accès à la base de données
-    conn = sqlite3.connect(database_path)
-    # Le curseur permettra l'envoi des commandes SQL
+    # Acces a la base de donnees
+    conn = sqlite3.connect('inginious.sqlite')
+    # Le curseur permettra l envoi des commandes SQL
     cursor = conn.cursor()
 
-    # Remplir le dictionnaire avec le nombre d'essais totaux et le nombres de tâches réalisées.
-    for row in cursor.execute("SELECT course, username, tried from user_tasks"):
-        # Sélectionner seulement le cours LSINF1101-PYTHON
-        if row[0] == cours:
-            current = essais_par_etudiant.get(row[1], (0, 0))
-            current = (current[0]+row[2], current[1]+1)
-            essais_par_etudiant[row[1]] = current
+    # Remplir le dictionnaire avec le nombre d essais totaux et le nombres de taches realisees.
+    for row in cursor.execute("SELECT username, tried from user_tasks WHERE course='{}'".format(cours)):
+        current = essais_par_etudiant.get(row[0], (0, 0))
+        current = (current[0]+row[1], current[1]+1)
+        essais_par_etudiant[row[0]] = current
 
     conn.close()
 
@@ -113,30 +107,28 @@ def nbr_etudiants_nbr_essais_moyens(cours):
 
 
 #-------------------------
-#Graphique Réussis/Ratés
+#Graphique Reussis/Rates
 def nbr_reussis_nbr_rates(cours):
     """
     @pre : <cours> string du nom du cours.
-    @post: Retourne une liste contenant les données de l'axe y du futur graphique.
+    @post: Retourne une liste contenant les donnees de l axe y du futur graphique.
     """
-    # Accès à la base de données
+    # Acces a la base de donnees
     conn = sqlite3.connect('inginious.sqlite')
-    # Le curseur permettra l'envoi des commandes SQL
+    # Le curseur permettra l envoi des commandes SQL
     cursor = conn.cursor()
     reussis = 0
     rates = 0
-    # Augmenter les deux variables avec le nombre de réussis et de ratés
-    for row in cursor.execute("SELECT course, succeeded from user_tasks"):
-        # Sélectionner seulement le cours LEPL1402
-        if row[0] == cours:
-            if row[1] == 'true':
-                reussis += 1
-            else:
-                rates += 1
+    # Augmenter les deux variables avec le nombre de reussis et de rates
+    for row in cursor.execute("SELECT succeeded from user_tasks WHERE course='{}'".format(cours)):
+        if row[0] == 'true':
+            reussis += 1
+        else:
+            rates += 1
 
     conn.close()
 
-    return [reussis, rates]
+    return [round((reussis/(reussis+rates))*100), round((rates/(reussis+rates))*100)]
 
 
 #-------------------------
@@ -144,11 +136,11 @@ def nbr_reussis_nbr_rates(cours):
 def taux_de_reussite():
     """
     @pre: /
-    @post: Retourne une liste contenant les données du taux de réussite pour les sinfs et les ingis.
+    @post: Retourne une liste contenant les donnees du taux de reussite pour les sinfs et les ingis.
     """
-    #Accès à la base de données
-    conn = sqlite3.connect(database_path)
-    #Le curseur permettra l'envoi des commandes SQL
+    #Acces a la base de donnees
+    conn = sqlite3.connect('inginious.sqlite')
+    #Le curseur permettra l envoi des commandes SQL
     cursor = conn.cursor()
     reussis_sinf = 0
     rates_sinf = 0
@@ -156,7 +148,7 @@ def taux_de_reussite():
     reussis_ingi = 0
     rates_ingi = 0
     for row in cursor.execute("SELECT course, succeeded from user_tasks"):
-        # Sélectionner seulement le cours LEPL1402
+        # Selectionner seulement le cours LEPL1402
         if row[0] == 'LEPL1402':
             if row[1] == 'true':
                 reussis_ingi += 1

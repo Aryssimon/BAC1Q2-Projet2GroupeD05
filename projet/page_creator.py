@@ -4,11 +4,11 @@
 def html_page_creator(label, x_axis, y_axis, type, colors, options=""):
     """
     @Pre:   <label> Le titre du graphique (str).
-            <x_axis> et <y_axis> deux listes représentants les données des axes x et y.
-            <type> string représentant le type de graphique (bar, pie, radar, polarArea, scatter, bubble, line).
-            <colors> string représentant le backgroundColor et le hoverBackgroundColor.
+            <x_axis> et <y_axis> deux listes representants les donnees des axes x et y.
+            <type> string representant le type de graphique (bar, pie, radar, polarArea, scatter, bubble, line).
+            <colors> string representant le backgroundColor et le hoverBackgroundColor.
 
-    @Post:  Retourne une page html affichant un graphique contenant les données entrées en paramètres.
+    @Post:  Retourne une page html affichant un graphique contenant les donnees entrees en parametres.
     """
 
     html_page = """<!DOCTYPE html>
@@ -16,7 +16,7 @@ def html_page_creator(label, x_axis, y_axis, type, colors, options=""):
 <head>
   <meta charset="utf-8">
   <meta name="author" content="Alsteens Louis, Arys Simon, El Ouilinti Aymen">
-  <meta name="description" content="Page HTML affichant un graphique basé sur les données de la database Inginious">
+  <meta name="description" content="Page HTML affichant un graphique base sur les donnees de la database Inginious">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
   <title>Projet2 - Graphique Inginious</title>
 
@@ -42,7 +42,7 @@ def html_page_creator(label, x_axis, y_axis, type, colors, options=""):
 </head>
 
 <body>
-  <h1 title="Retour à l'accueil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
+  <h1 title="Retour a l accueil"><a href="/" id="title">Projet 2 - Visualisation Inginious</a></h1>
   <canvas id="mon_graphique" width="100%" height="45%"></canvas>
   <script>
     var ctx = document.getElementById('mon_graphique').getContext('2d');
