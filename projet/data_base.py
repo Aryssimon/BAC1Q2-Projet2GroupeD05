@@ -44,7 +44,6 @@ def nbr_de_chaque_result(cours):
 
 
 
-
 #---------------------------------
 #Graphique nombre d etudiants par nombre d essais moyens
 def nbr_etudiants_nbr_essais_moyens(cours):
@@ -104,8 +103,6 @@ def nbr_etudiants_nbr_essais_moyens(cours):
 
 
 
-
-
 #-------------------------
 #Graphique Reussis/Rates
 def nbr_reussis_nbr_rates(cours):
@@ -129,6 +126,30 @@ def nbr_reussis_nbr_rates(cours):
     conn.close()
 
     return [round((reussis/(reussis+rates))*100), round((rates/(reussis+rates))*100)]
+
+
+
+#------------------------------
+#Nombre de soumissions par jour
+def nbr_submissions_per_day(cours):
+    """
+    @pre : <cours> string du nom du cours.
+    @post: Retourne une liste contenant les donnees de l axe y et de l axe x du futur graphique.
+    """
+    conn = sqlite3.connect('inginious.sqlite')
+    #Acces a la base de donnees
+    conn = sqlite3.connect('inginious.sqlite')
+    #Le curseur permettra l envoi des commandes SQL
+    cursor = conn.cursor()
+
+    x_and_y = {}
+
+    for row in cursor.execute("SELECT submitted_on from submissions WHERE course='{}'".format(cours)):
+        x_and_y[row[0][:10]] = x_and_y.get(row[0][:10], 0) + 1
+
+    conn.close()
+
+    return [list(x_and_y.keys()), list(x_and_y.values())]
 
 
 #-------------------------
@@ -159,11 +180,12 @@ def taux_de_reussite():
                 reussis_sinf += 1
             else:
                 rates_sinf += 1
+
+    conn.close()
+
     taux_sinf = round((reussis_sinf/(reussis_sinf+rates_sinf))*100)
     taux_ingi = round((reussis_ingi/(reussis_ingi+rates_ingi))*100)
 
     return [taux_sinf, taux_ingi]
 
-
-
-    conn.close()
+#print(nbr_submissions_per_day('LEPL1402'))
