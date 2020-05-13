@@ -39,7 +39,7 @@ def nbr_de_chaque_result(cours):
 
     conn.close()
 
-
+    #Faire des pourcentages a deux chiffres derriere la virgule
     return [round((timeout/total)*100, 2), round((crash/total)*100, 2), round((overflow/total)*100, 2), round((killed/total)*100, 2), round((success/total)*100, 2), round((failed/total)*100, 2)]
 
 
@@ -125,6 +125,7 @@ def nbr_reussis_nbr_rates(cours):
 
     conn.close()
 
+    #Faire des pourcentages
     return [round((reussis/(reussis+rates))*100), round((rates/(reussis+rates))*100)]
 
 
@@ -142,6 +143,7 @@ def nbr_submissions_per_day(cours):
     #Le curseur permettra l envoi des commandes SQL
     cursor = conn.cursor()
 
+    #Dictionnaire exemple: {'2020-10-02': 456, ....}
     x_and_y = {}
 
     for row in cursor.execute("SELECT submitted_on from submissions WHERE course='{}'".format(cours)):
@@ -183,9 +185,8 @@ def taux_de_reussite():
 
     conn.close()
 
+    #Faire des pourcentages
     taux_sinf = round((reussis_sinf/(reussis_sinf+rates_sinf))*100)
     taux_ingi = round((reussis_ingi/(reussis_ingi+rates_ingi))*100)
 
     return [taux_sinf, taux_ingi]
-
-#print(nbr_submissions_per_day('LEPL1402'))

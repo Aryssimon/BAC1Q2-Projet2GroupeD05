@@ -132,7 +132,7 @@ def graphique_taux_de_reussite():
     """Retourne une page affichant un graphique Chartjs de comparaison du taux de reussite entre les sinfs et les ingis."""
     x = ["Sinf", "Ingi"]
     y = data_base.taux_de_reussite()
-    return page_creator.html_page_creator("Comparaison Sinf/Ingi: Taux de reussite", x, y, 'bar', colors_taux_de_reussite, options_taux)
+    return page_creator.html_page_creator("Taux de reussite", x, y, 'bar', colors_taux_de_reussite, options_taux)
 
 colors_taux_de_reussite = """,
 backgroundColor: [
