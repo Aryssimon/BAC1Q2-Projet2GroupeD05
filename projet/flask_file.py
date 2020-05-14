@@ -136,11 +136,11 @@ def graphique_taux_de_reussite():
 
 colors_taux_de_reussite = """,
 backgroundColor: [
-  "#45f542",
+  "#42baff",
   "#42baff"
 ],
 hoverBackgroundColor: [
-  "#3dc938",
+  "#39a0db",
   "#39a0db" ]"""
 
 options_taux = """,
