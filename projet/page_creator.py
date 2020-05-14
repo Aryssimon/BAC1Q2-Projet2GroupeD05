@@ -48,14 +48,14 @@ def html_page_creator(label, x_axis, y_axis, type, colors="", options=""):
     var ctx = document.getElementById('mon_graphique').getContext('2d');
     // Creation du graphique
     var myChart = new Chart(ctx, {
-      type: """+'"'+type+'"'+""",
+      type: """ + '"' + type + '"' + """,
       data: {
-        labels: """+str(x_axis)+""" ,
+        labels: """ + str(x_axis) + """ ,
         datasets: [{
-          label: """+'"'+label+'"'+""",
-          data: """+str(y_axis)+""" """+colors+"""
+          label: """ + '"' + label + '"' + """,
+          data: """ + str(y_axis) + """ """ + colors + """
         }]
-      }"""+options+"""
+      }""" + options + """
     });
   </script>
 </body>
